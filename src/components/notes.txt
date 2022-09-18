@@ -1,0 +1,64 @@
+TYPESCRIPT NOTES
+----------------------------------------------------------------------------------------------
+How to convert jsx files to tsx ?
+- change extension from .jsx to .tsx
+- declaring variable:
+    + to set a type to a variable, use colon followed by type, then assign the value of that type
+      eg: const name: string = "Mike"
+- Two important types in TS: 'any' and 'never'
+    +   any: allows any type
+        never: won't allow any type
+    + Never use 'any' inside TS. It is not safe
+
+- declaring function:
+    + when declaring a function, set the type of each parameter passed in the function and type of
+      value being returned.
+      eg: const func: (a: string, b: number, c: boolean) => boolean = (a, b, c) => { return true; }
+- interfaces in TS
+    + interfaces allow us to use inheritance and overloading.
+        eg: [ Inheritance ]
+
+            interface ISearchBoxProps extends IChangeBoxProps {
+                className: string,
+                placeholder?: string
+            }
+
+            interface IChangeBoxProps {
+                onChangeHandler: (a: string) => void
+            }
+            ======================================================
+            [ OVERLOADING ]
+
+            interface ISearchBoxProps {
+                className: string,
+                placeholder?: string
+            }
+
+            interface ISearchBoxProps {
+                onChangeHandler: (a: string) => void
+            }
+
+- types in TS
+    + types allow us to use union
+        eg: type CanadianAddress = {
+                street: string;
+                province: string;
+            }
+
+            type USAddress = {
+                street: string;
+                state: string;
+            }
+
+            type NorthAmericanAddress = CanadianAddress | USAddress     // UNION
+
+            const Address: NorthAmericanAddress = {
+                street: 'D.Roosevelt',
+                province: 'Whitefield',
+                state: 'Michigan'
+            }   // has both the fields of CanadianAddress and USAddress
+
+- Generic in TS
+    + It is a type parameter that can be used throughout the rest of a function inside of its definition
+      for types. It is used when we are not sure of the type of value a function a going to return after
+      execution.
